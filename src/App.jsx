@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+
 import './index.css'
 
 const todoList = [
@@ -25,8 +25,7 @@ function App() {
     
       <div>
         <h1>Todo list</h1>
-        <label htmlFor="search">Search</label>
-        <input id="search" type="text"/>
+       
       
       <hr/>
 
