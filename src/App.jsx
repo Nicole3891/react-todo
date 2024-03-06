@@ -1,32 +1,31 @@
 
-import './index.css'
-import TodoList from './TodoList'
-import AddToDoForm from './AddTodoForm'
+  import React, { useState } from 'react'
+  import TodoList from './TodoList'
+  import AddToDoForm from './AddTodoForm'
 
 
 
-function App() {
-  
-
-  return (
+  function App() {
+    const [newTodo, setNewTodo] = useState(" "); //create a new state variable
     
-      <div>
-        <h1>Todo list</h1>
+    
+    
+    return (
+      
+        <div>
+          <h1>Todo List</h1>
 
- {/* Using AddToDoForm component*/}  
- <AddToDoForm />
+  {/* Using AddToDoForm component*/}  
+  <AddToDoForm  onAddTodo={setNewTodo}/>
+  <p>{newTodo}</p>
 
-{/* Using TodoList component*/}
-  <TodoList /> 
+  {/* Using TodoList component*/}
+    <TodoList /> 
+
 
       
-    
-      
-      <hr/>
+        </div> 
+    );
+  }
 
-     
-      </div> 
-  )
-}
-
-export default App
+  export default App;
