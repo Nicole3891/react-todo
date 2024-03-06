@@ -16,19 +16,23 @@
     }
   ];
   
+  
   const TodoList = () => {
     
     return (
       <div>
         <ul>
         {todoList.map(todo => (
-            <TodoListItem1 key={todo.id} todo={todo} />
+            <TodoListItem1 key={todo.objectID} todo={todo} />
         ))}
+       
         </ul>
 
       </div>
     );
   };
+
+  
 
 
 
