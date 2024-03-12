@@ -6,9 +6,12 @@
 
 
   function App() {
-    const [newTodo, setNewTodo] = useState(" "); //create a new state variable
+    //const [newTodo, setNewTodo] = useState(" "); //create a new state variable
+    const [ todoList, setTodoList ] = useState ([]); //Create todoList state variable;
     
-    
+    const addTodo = (newTodo) => {
+      setTodoList([...todoList, newTodo]);
+    };
     
     return (
       
@@ -16,11 +19,11 @@
           <h1>Todo List</h1>
 
   {/* Using AddToDoForm component*/}  
-  <AddToDoForm  onAddTodo={setNewTodo}/>
-  <p>{newTodo}</p>
+  <AddToDoForm  onAddTodo={addTodo}/>
+ 
 
   {/* Using TodoList component*/}
-    <TodoList /> 
+    <TodoList todoList={todoList}/> 
 
 
       

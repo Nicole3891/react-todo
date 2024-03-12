@@ -1,33 +1,42 @@
     import { useState } from "react";
     
 
-    const AddToDoForm = (props) => {
-      const [todoTitle, setTodoTitle] = useState("");
+    const AddToDoForm = ({ onAddTodo }) => { //destructure onAddTodo from props
+      const [todoTitle, setTodoTitle] = useState("");//Create todoTitle state variable;
 
       //const handleChange = (event) => {
         //setTodoTitle(event.target.value)
       //}
+      const handleTitleChange = (event) => {
+        const newTodoTitle = event.target.value; //retrive the input value from the event object
+        setTodoTitle(newTodoTitle);//Update todoTitle state
+      }
 
       const handleAddTodo = (event) => {
       
         event.preventDefault(); //prevent default from submission behavior;
-        const todoTitle = event.target.title.value; //retrive value of title input;
-        
-      console.log(todoTitle);
-      props.onAddTodo(todoTitle); //INvoking onAddTodo callback prop and passing todoTitle
+        //const todoTitle = event.target.title.value; //retrive value of title input;
+        const newTodo = {
+          title: todoTitle,
+          id: Date.now() //Genarete an unique identifier
+        };
+      //console.log(todoTitle);
+      onAddTodo(newTodo); 
       
-        setTodoTitle(""); //Reset the form by clearing the the text input value;
+        setTodoTitle(""); //Reset todoTitle state;
       };
       
       return (
         <div>
         <form onSubmit={handleAddTodo}> {/* Add onSubmit prop with handleAddTodo function*/}
           <label htmlFor="todoTitle">Title</label>
-          <input id="todoTitle" 
+          <input 
+          id="todoTitle" 
           type="text" 
           name="title"
-          value={todoTitle} 
-          onChange={ (event) => setTodoTitle(event.target.value)}
+          value={todoTitle} //Use todoTitle state as a value prop;
+          onChange={handleTitleChange}//Use handleTitleChange function for onChange prop
+          //{ (event) => setTodoTitle(event.target.value)}
           />
           <button type="submit">Add Todo</button>
           </form>
