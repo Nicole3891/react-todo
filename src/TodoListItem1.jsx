@@ -1,10 +1,10 @@
   import React from 'react';
 
-  const TodoListItem1 = (props) => {
+  const TodoListItem1 = ({ todo }) => { //Destructure todo from props
     //const {todo} = props.item;
     
     return (
-      <li>{props.todo.title}</li> //Update the todo object to come from props
+      <li>{todo.title}</li> //Update the todo object to come from props
     );
   };
 
