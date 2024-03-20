@@ -15,7 +15,7 @@
       //title: "Complete assigment"
     //}
   //];
-  
+  //replaced the todoList
   const TodoList = ({ todoList })  => { //Destructure todoList from props
     
     return (
