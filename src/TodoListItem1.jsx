@@ -1,11 +1,16 @@
-  import React from 'react';
+import React from 'react';
 
-  const TodoListItem1 = ({ todo }) => { //Destructure todo from props
-    //const {todo} = props.item;
-    
-    return (
-      <li>{todo.title}</li> //Update the todo object to come from props
-    );
+const TodoListItem = ({ todo, onRemoveTodo }) => {
+  const handleRemoveClick = () => {
+    onRemoveTodo(todo.id); // Call onRemoveTodo with the todo id
   };
 
-  export default TodoListItem1;
+  return (
+    <li>
+      {todo.title} 
+      <button onClick={handleRemoveClick}>Remove</button> {/* Add Remove button */}
+    </li>
+  );
+};
+
+export default TodoListItem;
