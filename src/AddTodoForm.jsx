@@ -1,47 +1,37 @@
-    import { useState } from "react";
-    
+import React, { useState } from 'react';
+import InputWithLabel from './InputWithLabel';
 
-    const AddToDoForm = ({ onAddTodo }) => { //destructure onAddTodo from props
-      const [todoTitle, setTodoTitle] = useState("");//Create todoTitle state variable;
+const AddTodoForm = ({ onAddTodo }) => {
+  const [todoTitle, setTodoTitle] = useState("");
 
-      //const handleChange = (event) => {
-        //setTodoTitle(event.target.value)
-      //}
-      const handleTitleChange = (event) => {
-        const newTodoTitle = event.target.value; //retrive the input value from the event object
-        setTodoTitle(newTodoTitle);//Update todoTitle state
-      }
+  const handleTitleChange = (event) => {
+    setTodoTitle(event.target.value);
+  };
 
-      const handleAddTodo = (event) => {
-      
-        event.preventDefault(); //prevent default from submission behavior;
-        //const todoTitle = event.target.title.value; //retrive value of title input;
-        const newTodo = {
-          title: todoTitle,
-          id: Date.now() //Genarete an unique identifier
-        };
-      //console.log(todoTitle);
-      onAddTodo(newTodo); 
-      
-        setTodoTitle(""); //Reset todoTitle state;
-      };
-      
-      return (
-        <div>
-        <form onSubmit={handleAddTodo}> {/* Add onSubmit prop with handleAddTodo function*/}
-          <label htmlFor="todoTitle">Title</label>
-          <input 
-          id="todoTitle" 
-          type="text" 
-          name="title"
-          value={todoTitle} //Use todoTitle state as a value prop;
-          onChange={handleTitleChange}//Use handleTitleChange function for onChange prop
-          //{ (event) => setTodoTitle(event.target.value)}
-          />
-          <button type="submit">Add Todo</button>
-          </form>
-          </div>
-      );
+  const handleAddTodo = (event) => {
+    event.preventDefault();
+    const newTodo = {
+      title: todoTitle,
+      id: Date.now()
     };
+    onAddTodo(newTodo);
+    setTodoTitle("");
+  };
+  
+  return (
+    <div>
+      <form onSubmit={handleAddTodo}>
+        <InputWithLabel 
+          id="todoTitle"
+          value={todoTitle}
+          onInputChange={handleTitleChange}
+        >
+          Title
+        </InputWithLabel>
+        <button type="submit">Add Todo</button>
+      </form>
+    </div>
+  );
+};
 
-    export default AddToDoForm;
+export default AddTodoForm;
